@@ -7,11 +7,11 @@ public:
 
 	void Push(int x);
 	int Pop();
+	int Peek();
 	int *stack;
 	
-	int currentSize;
-	int tailPointer;
-
 private:
 	void Resize();
+	int currentSize;
+	int tailPointer;
 };

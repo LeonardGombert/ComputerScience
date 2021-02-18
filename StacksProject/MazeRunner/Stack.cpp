@@ -16,7 +16,8 @@ Stack::~Stack()
 
 void Stack::Push(int x)
 {
-	if (tailPointer >= currentSize)
+	// if the tailPointer is already at the last available position...
+	if (tailPointer == (currentSize - 1))
 	{
 		Resize();
 		Push(x);
@@ -24,14 +25,21 @@ void Stack::Push(int x)
 
 	else
 	{
-		stack[tailPointer] = x;
+		// move the tailPointer up by one and add a value
 		tailPointer++;
+		stack[tailPointer] = x;
 	}
 }
 
 int Stack::Pop()
 {
-	return stack[--tailPointer];
+	// return the last value and move the tail pointer down
+	return stack[tailPointer--];
+}
+
+int Stack::Peek()
+{
+	return stack[tailPointer];
 }
 
 void Stack::Resize()
@@ -43,8 +51,8 @@ void Stack::Resize()
 	memcpy(newStack, stack, currentSize * sizeof(int));
 
 	currentSize = newSize;
-	
+
 	// delete the memory pointed by the stack, and reassign it
-	delete[]stack; 
+	delete[]stack;
 	stack = newStack;
 }
