@@ -5,6 +5,7 @@ public:
 	Node();
 	~Node();
 
+	bool mouse;
 	bool explored;
 	bool bWall;
 	int index;	

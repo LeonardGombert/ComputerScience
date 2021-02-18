@@ -7,8 +7,12 @@ public:
 	Grid();
 	~Grid();
 
+	void DisplayGrid();
+	Node* RetrieveGrid();
+
+	int gridSize;
+
 private:
 	void GenerateGrid();
-	Node *grid;
+	Node *grid; // a pointer to a Node
 };
-

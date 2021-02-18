@@ -140,12 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="MazeRunner.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="MazeRunner.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
