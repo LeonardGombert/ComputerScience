@@ -33,8 +33,11 @@ void Stack::Push(int x)
 
 int Stack::Pop()
 {
+	if (tailPointer == stack[0]) return printf("Stack was empty");
+	
 	// return the last value and move the tail pointer down
-	return stack[tailPointer--];
+	else return stack[tailPointer--];
+	
 }
 
 int Stack::Peek()

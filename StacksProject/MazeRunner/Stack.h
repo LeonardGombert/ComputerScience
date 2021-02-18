@@ -8,10 +8,11 @@ public:
 	void Push(int x);
 	int Pop();
 	int Peek();
-	int *stack;
 	
 private:
 	void Resize();
+
+	int* stack;
 	int currentSize;
 	int tailPointer;
 };
