@@ -4,15 +4,14 @@
 class Grid
 {
 public:
-	Grid();
+	Grid(int x, int y, int z);
 	~Grid();
 
 	void DisplayGrid();
 	Node* RetrieveGrid();
 
-	int gridSize;
-
 private:
 	void GenerateGrid();
+	int sizeX, sizeY, startingPos;
 	Node *grid; // a pointer to a Node
 };

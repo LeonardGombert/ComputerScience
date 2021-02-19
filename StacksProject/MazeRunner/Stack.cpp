@@ -47,7 +47,7 @@ int Stack::Peek()
 
 void Stack::Resize()
 {
-	size_t newSize = currentSize * 2;
+	int newSize = currentSize * 2;
 	int* newStack = new int[newSize];
 
 	// define the new array destination, and copy contents of original array, defining how many numbers you must copy

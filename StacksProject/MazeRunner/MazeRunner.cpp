@@ -2,15 +2,18 @@
 #include "Stack.h"
 #include "Grid.h"
 #include "Mouse.h"
-#include "MazeRunner.h"
 
 using namespace std;
+
+#define sizeX 6 
+#define sizeY 5
+#define startingPosition 12
 
 int main()
 {
 	Stack stack;
-	Grid grid;
-	Mouse mouse = Mouse(0, grid.gridSize); 
+	Grid grid = Grid(sizeX, sizeY, startingPosition);
+	Mouse mouse = Mouse(startingPosition, sizeX, sizeY);
 
 	while (true)
 	{
@@ -22,13 +25,6 @@ int main()
 		system("PAUSE");
 		system("CLS");
 
-		mouse.Step(grid.RetrieveGrid()); // a reference to the original pointer
+		cout << mouse.CheckMoves(grid.RetrieveGrid()); // a reference to the original pointer
 	}
-
-	/*stack.Push(4);
-	stack.Push(92);
-	stack.Push(7);
-	int yes = stack.Pop();
-	cout << yes << endl;
-	cout << stack.Peek() << endl;*/
 }
