@@ -26,7 +26,7 @@ Mouse::~Mouse()
 {
 }
 
-// reference to the node grid
+// check which moves the mouse can legally make based on its position. The Function will return a unique Binary value that represents where the mouse can move
 int Mouse::CheckMoves(Node* nodeGrid)
 {
 	int returnValue = 0;
