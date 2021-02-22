@@ -12,6 +12,6 @@ public:
 
 private:
 	void GenerateGrid();
-	int sizeX, sizeY, startingPos;
+	unsigned int sizeX, sizeY, startingPos;
 	Node *grid; // a pointer to a Node
 };

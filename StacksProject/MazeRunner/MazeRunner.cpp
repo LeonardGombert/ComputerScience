@@ -7,13 +7,13 @@ using namespace std;
 
 #define sizeX 6 
 #define sizeY 5
-#define startingPosition 12
+#define startingPosition 0
 
 int main()
 {
 	Stack stack;
 	Grid grid = Grid(sizeX, sizeY, startingPosition);
-	Mouse mouse = Mouse(startingPosition, sizeX, sizeY);
+	Mouse mouse = Mouse(sizeX, sizeY, startingPosition);
 
 	while (true)
 	{
@@ -25,6 +25,6 @@ int main()
 		system("PAUSE");
 		system("CLS");
 
-		cout << mouse.CheckMoves(grid.RetrieveGrid()); // a reference to the original pointer
+		mouse.CheckMoves(grid.RetrieveGrid());
 	}
 }

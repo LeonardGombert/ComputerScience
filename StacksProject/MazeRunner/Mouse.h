@@ -4,12 +4,12 @@
 class Mouse
 {
 public:
-	Mouse(int startingPosition, int sizeX, int sizeY);
+	Mouse(int sizeX, int sizeY, int startingPosition);
 	~Mouse();
 
-	int CheckMoves(Node* nodeGrid);
+	void CheckMoves(Node* nodeGrid);
 
 private:
-	void Step();
+	void Evaluate(int moveValue, Node* nodeGrid);	
 	int gridPosition, gridSize, gridWidth, gridHeight;
 };

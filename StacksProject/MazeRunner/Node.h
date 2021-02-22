@@ -8,6 +8,6 @@ public:
 	bool mouse;
 	bool explored;
 	bool bWall;
-	int index;	
+	//int index;	
 };
 
