@@ -1,22 +1,20 @@
 #include <iostream>
+#include "Definitions.h"
 #include "Stack.h"
 #include "Grid.h"
 #include "Mouse.h"
 
 using namespace std;
 
-#define sizeX 6
-#define sizeY 5
-#define startingPosition 0
-#define exit 24
+
 
 int main()
 {
 	Stack stack;
-	Grid grid = Grid(sizeX, sizeY, startingPosition, exit);
-	Mouse mouse = Mouse(sizeX, sizeY, startingPosition);
+	Grid grid;
+	Mouse mouse;
 
-	while (mouse.movementStack.Peek() != grid.exitNode)
+	while (mouse.movementStack.Peek() != mazeEnd)
 	{
 		grid.DisplayGrid(mouse.movementStack.Peek());
 

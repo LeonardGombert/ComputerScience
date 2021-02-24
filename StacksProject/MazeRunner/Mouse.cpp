@@ -1,10 +1,11 @@
 #include <iostream>
+#include "Definitions.h"
 #include "Mouse.h"
 
 enum MoveDirection {
 	// move the size of the x value
-	MoveUp = -6,
-	MoveDown = 6,
+	MoveUp = -mazeSizeX,
+	MoveDown = mazeSizeX,
 
 	// move 1 to the left or right
 	MoveLeft = -1,
@@ -12,13 +13,11 @@ enum MoveDirection {
 };
 
 
-Mouse::Mouse(int sizeX, int sizeY, int startingPosition)
+Mouse::Mouse()
 {
-	gridWidth = sizeX;
-	gridHeight = sizeY;
-	gridSize = sizeX * sizeY;
-
-	gridPosition = startingPosition;
+	movementStack;
+	gridSize = mazeSizeX * mazeSizeY;
+	gridPosition = mazeStart;
 	movementStack.Push(gridPosition);
 }
 
@@ -36,9 +35,9 @@ void Mouse::CheckMoves(Node* grid)
 
 	if (nodeGrid[gridPosition + MoveDown].bIsWall == false && nodeGrid[gridPosition + MoveDown].bIsExplored == false && gridPosition + MoveDown < gridSize) moveValue += 2;
 
-	if (nodeGrid[gridPosition + MoveLeft].bIsWall == false && nodeGrid[gridPosition + MoveLeft].bIsExplored == false && gridPosition % gridWidth != 0 && gridPosition + MoveLeft > 0) moveValue += 4;
+	if (nodeGrid[gridPosition + MoveLeft].bIsWall == false && nodeGrid[gridPosition + MoveLeft].bIsExplored == false && gridPosition % mazeSizeX != 0 && gridPosition + MoveLeft > 0) moveValue += 4;
 
-	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition +1) % gridWidth != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
+	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition +1) % mazeSizeX != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
 
 	Evaluate();
 }

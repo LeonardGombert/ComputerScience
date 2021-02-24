@@ -5,18 +5,18 @@
 class Mouse
 {
 public:
-	Mouse(int sizeX, int sizeY, int startingPosition);
+	Mouse();
 	~Mouse();
-
-	void CheckMoves(Node* grid);
 
 	Stack movementStack;
 
-private:
-	int moveValue;
-	Node* nodeGrid;
+	void CheckMoves(Node* grid);
 
+private:
 	void Evaluate();
 	
-	int gridPosition, gridSize, gridWidth, gridHeight;
+	Node* nodeGrid;	
+
+	int gridPosition, gridSize;
+	int moveValue;
 };
