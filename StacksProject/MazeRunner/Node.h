@@ -5,9 +5,8 @@ public:
 	Node();
 	~Node();
 
-	bool mouse;
-	bool explored;
-	bool bWall;
-	//int index;	
+	bool bIsExplored;
+	bool bIsWall; 
+	bool bIsBranching; // does the path branch out ? 
 };
 

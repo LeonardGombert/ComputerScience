@@ -7,7 +7,7 @@ public:
 	Grid(int x, int y, int z);
 	~Grid();
 
-	void DisplayGrid();
+	void DisplayGrid(int mousePosition);
 	Node* RetrieveGrid();
 
 private:

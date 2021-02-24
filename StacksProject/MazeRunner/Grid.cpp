@@ -18,29 +18,25 @@ Grid::~Grid()
 {
 }
 
-void Grid::DisplayGrid()
+void Grid::DisplayGrid(int mousePosition)
 {
 	for (int i = 0; i < sizeX * sizeY; i++)
 	{
 		if (i % sizeX == 0) cout << endl;
 		
-		if (grid[i].bWall) cout << "x ";
-		else if (grid[i].mouse) cout << "O ";
-		else if (grid[i].explored) cout << "o ";
+		if (grid[i].bIsWall) cout << "x ";
+		else if (i == mousePosition) cout << "O ";
+		else if (grid[i].bIsExplored) cout << "o ";
 		else cout << ". ";
 	}
 }
 
-Node* Grid::RetrieveGrid()
-{
-	return grid; // return the contents of the pointer
-}
+// return the contents of the grid pointer
+Node* Grid::RetrieveGrid() { return grid; }
 
 // create the maze and define contents
 void Grid::GenerateGrid()
 {
-	grid[startingPos].mouse = true;
-
-	grid[1].bWall = grid[3].bWall = grid[5].bWall = grid[7].bWall = grid[15].bWall = grid[16].bWall
-	= grid[18].bWall = grid[19].bWall = grid[20].bWall = grid[21].bWall = grid[29].bWall = true;
+	grid[1].bIsWall = grid[3].bIsWall = grid[5].bIsWall = grid[7].bIsWall = grid[15].bIsWall = grid[16].bIsWall
+	= grid[18].bIsWall = grid[19].bIsWall = grid[20].bIsWall = grid[21].bIsWall = grid[29].bIsWall = true;
 }

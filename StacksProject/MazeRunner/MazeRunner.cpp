@@ -17,7 +17,7 @@ int main()
 
 	while (true)
 	{
-		grid.DisplayGrid();
+		grid.DisplayGrid(mouse.movementStack.Peek());
 
 		cout << endl;
 		cout << endl;

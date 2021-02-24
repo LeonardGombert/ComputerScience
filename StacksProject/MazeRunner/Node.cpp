@@ -2,9 +2,9 @@
 
 Node::Node()
 {
-	bWall = false;
-	explored = false;
-	mouse = false;
+	bIsWall = false;
+	bIsBranching = false;
+	bIsExplored = false;
 }
 
 Node::~Node()

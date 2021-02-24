@@ -1,5 +1,6 @@
 #pragma once
 #include "Grid.h"
+#include "Stack.h"
 
 class Mouse
 {
@@ -7,9 +8,15 @@ public:
 	Mouse(int sizeX, int sizeY, int startingPosition);
 	~Mouse();
 
-	void CheckMoves(Node* nodeGrid);
+	void CheckMoves(Node* grid);
+
+	Stack movementStack;
 
 private:
-	void Evaluate(int moveValue, Node* nodeGrid);	
+	int moveValue;
+	Node* nodeGrid;
+
+	void Evaluate();
+	
 	int gridPosition, gridSize, gridWidth, gridHeight;
 };
