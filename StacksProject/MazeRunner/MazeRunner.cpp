@@ -5,10 +5,10 @@
 
 using namespace std;
 
-#define sizeX 10 
-#define sizeY 10
+#define sizeX 6
+#define sizeY 5
 #define startingPosition 0
-#define exit 99
+#define exit 24
 
 int main()
 {

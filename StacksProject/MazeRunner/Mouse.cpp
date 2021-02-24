@@ -3,8 +3,8 @@
 
 enum MoveDirection {
 	// move the size of the x value
-	MoveUp = -10,
-	MoveDown = 10,
+	MoveUp = -6,
+	MoveDown = 6,
 
 	// move 1 to the left or right
 	MoveLeft = -1,
@@ -38,7 +38,7 @@ void Mouse::CheckMoves(Node* grid)
 
 	if (nodeGrid[gridPosition + MoveLeft].bIsWall == false && nodeGrid[gridPosition + MoveLeft].bIsExplored == false && gridPosition % gridWidth != 0 && gridPosition + MoveLeft > 0) moveValue += 4;
 
-	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && gridPosition + MoveRight % gridWidth != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
+	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition +1) % gridWidth != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
 
 	Evaluate();
 }
@@ -79,7 +79,7 @@ void Mouse::Evaluate()
 		gridPosition += MoveUp;
 		break;
 	case 5: // move up and left
-		gridPosition += MoveLeft;
+		gridPosition += MoveUp;
 		break;
 	case 9: // move up and right
 		gridPosition += MoveUp;
@@ -93,7 +93,7 @@ void Mouse::Evaluate()
 		break;
 
 	case 12: // move left and right
-		gridPosition += MoveRight;
+		gridPosition += MoveLeft;
 		break;
 
 	default: // mouse can move in more than two directions
@@ -105,11 +105,11 @@ void Mouse::Evaluate()
 	switch (moveValue)
 	{
 	case 7 : // move up, down and left
-		gridPosition += MoveLeft;
+		gridPosition += MoveUp;
 		break;
 
 	case 11: // move up, down and right
-		gridPosition += MoveRight;
+		gridPosition += MoveUp;
 		break;
 
 	case 13 : // move up, left and right
@@ -124,7 +124,6 @@ void Mouse::Evaluate()
 		break;
 	}
 #pragma endregion
-
 
 	movementStack.Push(gridPosition);
 }
