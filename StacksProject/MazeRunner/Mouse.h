@@ -8,15 +8,16 @@ public:
 	Mouse();
 	~Mouse();
 
-	Stack movementStack;
-
 	void CheckMoves(Node* grid);
+	int RetrievePosition();
 
 private:
 	void Evaluate();
 	int PickRandomDirection(int const a, int const b, int const c);
 
 	Node* nodeGrid;	
+
+	Stack movementStack;
 
 	int gridPosition, gridSize;
 	int moveValue;

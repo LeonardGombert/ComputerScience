@@ -14,9 +14,10 @@ int main()
 	Grid grid;
 	Mouse mouse;
 
-	while (mouse.movementStack.Peek() != mazeEnd)
+	while (mouse.RetrievePosition() != mazeEnd)
 	{
-		grid.DisplayGrid(mouse.movementStack.Peek());
+		// check the top of the stack to get mouse position
+		grid.DisplayGrid(mouse.RetrievePosition());
 
 		cout << endl;
 		cout << endl;

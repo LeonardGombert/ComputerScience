@@ -10,7 +10,7 @@ Grid::Grid()
 {
 	grid = new Node[mazeSizeX * mazeSizeY]; // create grid of Nodes
 	
-	grid[24].bIsEnd = true;
+	grid[mazeEnd].bIsEnd = true;
 
 	// 10 x 10 grid maze
 	/*grid[1].bIsWall = grid[3].bIsWall = grid[4].bIsWall = grid[5].bIsWall = grid[7].bIsWall = grid[11].bIsWall = grid[17].bIsWall = grid[19].bIsWall =
@@ -22,7 +22,7 @@ Grid::Grid()
 
 	//6 x 5 grid maze
 	grid[1].bIsWall = grid[3].bIsWall = grid[5].bIsWall = grid[7].bIsWall = grid[15].bIsWall = grid[16].bIsWall =
-		grid[18].bIsWall = grid[19].bIsWall = grid[20].bIsWall = grid[21].bIsWall = grid[29].bIsWall = true;
+	grid[18].bIsWall = grid[19].bIsWall = grid[20].bIsWall = grid[21].bIsWall = grid[29].bIsWall = true;
 }
 
 Grid::~Grid()

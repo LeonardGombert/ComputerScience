@@ -16,7 +16,6 @@ enum MoveDirection {
 
 Mouse::Mouse()
 {
-	movementStack;
 	gridSize = mazeSizeX * mazeSizeY;
 	gridPosition = mazeStart;
 	movementStack.Push(gridPosition);
@@ -43,6 +42,11 @@ void Mouse::CheckMoves(Node* grid)
 	Evaluate();
 }
 
+int Mouse::RetrievePosition()
+{
+	return movementStack.Peek();
+}
+
 void Mouse::Evaluate()
 {
 	// set the current position as explored
@@ -54,6 +58,7 @@ void Mouse::Evaluate()
 	case 0: // can't move anywhere
 		movementStack.Pop(); // this will continue popping until you reach the original branching node
 		gridPosition = movementStack.Peek();
+		std::cout << "Backing up";
 		break;
 	case 1: // move up
 		gridPosition += MoveUp;
@@ -86,14 +91,14 @@ void Mouse::Evaluate()
 		break;
 
 	case 6: // move down and left
-		gridPosition += PickRandomDirection(MoveUp, MoveLeft, 0);
+		gridPosition += PickRandomDirection(MoveDown, MoveLeft, 0);
 		break;
 	case 10: // move down and right
-		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
+		gridPosition += PickRandomDirection(MoveDown, MoveRight, 0);
 		break;
 
 	case 12: // move left and right
-		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
+		gridPosition += PickRandomDirection(MoveLeft, MoveRight, 0);
 		break;
 
 	default: // mouse can move in more than two directions
@@ -130,7 +135,7 @@ void Mouse::Evaluate()
 }
 
 // pick a random direction to move in
-int Mouse::PickRandomDirection(int const a, int const b, int const c) // for some reason, the optional parameter doesn't work here
+int Mouse::PickRandomDirection(int const a, int const b, int const c = 0) // for some reason, the optional parameter doesn't work here
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -145,6 +150,6 @@ int Mouse::PickRandomDirection(int const a, int const b, int const c) // for som
 	case 3:
 		return c;
 	default:
-		return 0;
+		break;
 	}
 }
