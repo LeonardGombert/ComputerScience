@@ -14,7 +14,8 @@ public:
 
 private:
 	void Evaluate();
-	
+	int PickRandomDirection(int const a, int const b, int const c);
+
 	Node* nodeGrid;	
 
 	int gridPosition, gridSize;

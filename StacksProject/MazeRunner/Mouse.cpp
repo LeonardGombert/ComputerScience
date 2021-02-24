@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include "Definitions.h"
 #include "Mouse.h"
 
@@ -37,7 +38,7 @@ void Mouse::CheckMoves(Node* grid)
 
 	if (nodeGrid[gridPosition + MoveLeft].bIsWall == false && nodeGrid[gridPosition + MoveLeft].bIsExplored == false && gridPosition % mazeSizeX != 0 && gridPosition + MoveLeft > 0) moveValue += 4;
 
-	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition +1) % mazeSizeX != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
+	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition + 1) % mazeSizeX != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
 
 	Evaluate();
 }
@@ -75,24 +76,24 @@ void Mouse::Evaluate()
 	switch (moveValue)
 	{
 	case 3: // move up and down
-		gridPosition += MoveUp;
+		gridPosition += PickRandomDirection(MoveUp, MoveDown, 0);
 		break;
 	case 5: // move up and left
-		gridPosition += MoveUp;
+		gridPosition += PickRandomDirection(MoveUp, MoveLeft, 0);
 		break;
 	case 9: // move up and right
-		gridPosition += MoveUp;
+		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
 		break;
 
 	case 6: // move down and left
-		gridPosition += MoveDown;
+		gridPosition += PickRandomDirection(MoveUp, MoveLeft, 0);
 		break;
 	case 10: // move down and right
-		gridPosition += MoveDown;
+		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
 		break;
 
 	case 12: // move left and right
-		gridPosition += MoveLeft;
+		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
 		break;
 
 	default: // mouse can move in more than two directions
@@ -103,20 +104,20 @@ void Mouse::Evaluate()
 #pragma region Three Directions
 	switch (moveValue)
 	{
-	case 7 : // move up, down and left
-		gridPosition += MoveUp;
+	case 7: // move up, down and left
+		gridPosition += PickRandomDirection(MoveUp, MoveDown, MoveLeft);
 		break;
 
 	case 11: // move up, down and right
-		gridPosition += MoveUp;
+		gridPosition += PickRandomDirection(MoveUp, MoveDown, MoveRight);
 		break;
 
-	case 13 : // move up, left and right
-		gridPosition += MoveUp;
+	case 13: // move up, left and right
+		gridPosition += PickRandomDirection(MoveUp, MoveLeft, MoveRight);
 		break;
 
-	case 14 : // move down, left and right
-		gridPosition += MoveDown;
+	case 14: // move down, left and right
+		gridPosition += PickRandomDirection(MoveDown, MoveLeft, MoveRight);
 		break;
 
 	default:
@@ -124,5 +125,26 @@ void Mouse::Evaluate()
 	}
 #pragma endregion
 
+	// push the new position to the stack
 	movementStack.Push(gridPosition);
+}
+
+// pick a random direction to move in
+int Mouse::PickRandomDirection(int const a, int const b, int const c) // for some reason, the optional parameter doesn't work here
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(1, (2 + c != 0)); // Makes the max 2 or 3 based on the number of parameters passed. If c = 0, then Max = 2 + 0. Otherwise, Max = 2 + 1.
+
+	switch (dis(gen))
+	{
+	case 1:
+		return a;
+	case 2:
+		return b;
+	case 3:
+		return c;
+	default:
+		return 0;
+	}
 }
