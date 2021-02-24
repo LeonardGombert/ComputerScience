@@ -3,8 +3,8 @@
 
 enum MoveDirection {
 	// move the size of the x value
-	MoveUp = -6,
-	MoveDown = 6,
+	MoveUp = -10,
+	MoveDown = 10,
 
 	// move 1 to the left or right
 	MoveLeft = -1,
@@ -79,7 +79,7 @@ void Mouse::Evaluate()
 		gridPosition += MoveUp;
 		break;
 	case 5: // move up and left
-		gridPosition += MoveUp;
+		gridPosition += MoveLeft;
 		break;
 	case 9: // move up and right
 		gridPosition += MoveUp;
@@ -93,13 +93,38 @@ void Mouse::Evaluate()
 		break;
 
 	case 12: // move left and right
-		gridPosition += MoveLeft;
+		gridPosition += MoveRight;
 		break;
 
 	default: // mouse can move in more than two directions
 		break;
 	}
 #pragma endregion
+
+#pragma region Three Directions
+	switch (moveValue)
+	{
+	case 7 : // move up, down and left
+		gridPosition += MoveLeft;
+		break;
+
+	case 11: // move up, down and right
+		gridPosition += MoveRight;
+		break;
+
+	case 13 : // move up, left and right
+		gridPosition += MoveUp;
+		break;
+
+	case 14 : // move down, left and right
+		gridPosition += MoveDown;
+		break;
+
+	default:
+		break;
+	}
+#pragma endregion
+
 
 	movementStack.Push(gridPosition);
 }
