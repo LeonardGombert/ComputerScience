@@ -3,8 +3,8 @@
 Node::Node()
 {
 	bIsWall = false;
-	bIsBranching = false;
 	bIsExplored = false;
+	bIsEnd = false;
 }
 
 Node::~Node()

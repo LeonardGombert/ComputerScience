@@ -8,14 +8,15 @@ using namespace std;
 #define sizeX 6 
 #define sizeY 5
 #define startingPosition 0
+#define exit 24
 
 int main()
 {
 	Stack stack;
-	Grid grid = Grid(sizeX, sizeY, startingPosition);
+	Grid grid = Grid(sizeX, sizeY, startingPosition, exit);
 	Mouse mouse = Mouse(sizeX, sizeY, startingPosition);
 
-	while (true)
+	while (mouse.movementStack.Peek() != grid.exitNode)
 	{
 		grid.DisplayGrid(mouse.movementStack.Peek());
 
@@ -27,4 +28,7 @@ int main()
 
 		mouse.CheckMoves(grid.RetrieveGrid());
 	}
+
+	cout << "Mouse found the exit !";
+	
 }

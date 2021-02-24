@@ -6,7 +6,7 @@ public:
 	~Node();
 
 	bool bIsExplored;
-	bool bIsWall; 
-	bool bIsBranching; // does the path branch out ? 
+	bool bIsWall;
+	bool bIsEnd;
 };
 
