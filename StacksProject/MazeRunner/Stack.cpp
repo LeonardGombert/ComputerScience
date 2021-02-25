@@ -1,6 +1,7 @@
-#include "Stack.h"
-#include <stdio.h>
+#include <iostream>
 #include <string.h>
+#include <stdio.h>
+#include "Stack.h"
 
 Stack::Stack()
 {
@@ -23,21 +24,20 @@ void Stack::Push(int x)
 		Push(x);
 	}
 
-	else
-	{
-		// move the tailPointer up by one and add a value
-		tailPointer++;
-		stack[tailPointer] = x;
-	}
+	// move the tailPointer up by one and add the value
+	else stack[++tailPointer] = x;
 }
 
-int Stack::Pop()
+void Stack::Pop()
 {
-	if (tailPointer == stack[0]) return printf("Stack was empty");
+	if (tailPointer == stack[0]) std::cout << ">> Stack was empty <<" << std::endl;
 	
-	// return the last value and move the tail pointer down
-	else return stack[tailPointer--];
-	
+	else
+	{
+		// remove the last element and decrement the tail pointer
+		stack[tailPointer--] = 0;
+		std::cout << ">> Stack Popped <<" << std::endl;
+	}
 }
 
 int Stack::Peek()

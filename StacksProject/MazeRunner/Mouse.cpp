@@ -58,8 +58,8 @@ void Mouse::Evaluate()
 	case 0: // can't move anywhere
 		movementStack.Pop(); // this will continue popping until you reach the original branching node
 		gridPosition = movementStack.Peek();
-		std::cout << "Backing up";
-		break;
+		std::cout << "Backing up to : " << movementStack.Peek() << ". " << std::endl;
+		return; // break out of the function to avoid pushing at the end
 	case 1: // move up
 		gridPosition += moveUp;
 		break;
@@ -132,6 +132,8 @@ void Mouse::Evaluate()
 
 	// push the new position to the stack
 	movementStack.Push(gridPosition);
+	std::cout << "Stack size is " << movementStack.size() << ". " << std::endl;
+	std::cout << "Position is : " << movementStack.Peek() << ". " << std::endl;
 }
 
 // pick a random direction to move in

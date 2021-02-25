@@ -24,6 +24,8 @@ int main()
 		mouse.CheckMoves(grid.nodeGrid());
 	}
 
-	cout << "Mouse found the exit !";
+	system("CLS");
+
+	cout << "Mouse found the exit !" << endl;
 	
 }
