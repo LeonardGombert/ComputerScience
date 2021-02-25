@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.h"
+#include <vector>
 
 class Grid
 {
@@ -12,10 +13,11 @@ public:
 	Node* RetrieveGrid();
 
 private:
-	void ReadCSV();
-	void GenerateGrid();
-	
-	std::string fileName;
+	std::vector<int> ReadCSV(std::string file);
+	void GenerateGrid(std::vector<int> convertedMaze);
+
+	int sizeY, sizeX;
+	int start, end;
 
 	Node *grid; // a pointer to a Node
 };

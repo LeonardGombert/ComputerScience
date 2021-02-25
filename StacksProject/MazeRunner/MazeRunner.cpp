@@ -8,10 +8,8 @@ using namespace std;
 
 int main()
 {
-
-
 	Stack stack;
-	Grid grid;
+	Grid grid = Grid("Maze.csv");
 	Mouse mouse;
 
 	while (mouse.RetrievePosition() != mazeEnd)

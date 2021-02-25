@@ -21,4 +21,6 @@ private:
 
 	int gridPosition, gridSize;
 	int moveValue;
+
+	int moveUp = -mazeSizeX, moveDown = mazeSizeX, moveLeft = -1, moveRight = 1;
 };

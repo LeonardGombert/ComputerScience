@@ -3,17 +3,6 @@
 #include "Definitions.h"
 #include "Mouse.h"
 
-enum MoveDirection {
-	// move the size of the x value
-	MoveUp = -mazeSizeX,
-	MoveDown = mazeSizeX,
-
-	// move 1 to the left or right
-	MoveLeft = -1,
-	MoveRight = 1,
-};
-
-
 Mouse::Mouse()
 {
 	gridSize = mazeSizeX * mazeSizeY;
@@ -31,13 +20,13 @@ void Mouse::CheckMoves(Node* grid)
 	nodeGrid = grid;
 	moveValue = 0;
 
-	if (nodeGrid[gridPosition + MoveUp].bIsWall == false && nodeGrid[gridPosition + MoveUp].bIsExplored == false && gridPosition + MoveUp > 0) moveValue += 1;
+	if (nodeGrid[gridPosition + moveUp].bIsWall == false && nodeGrid[gridPosition + moveUp].bIsExplored == false && gridPosition + moveUp > 0) moveValue += 1;
 
-	if (nodeGrid[gridPosition + MoveDown].bIsWall == false && nodeGrid[gridPosition + MoveDown].bIsExplored == false && gridPosition + MoveDown < gridSize) moveValue += 2;
+	if (nodeGrid[gridPosition + moveDown].bIsWall == false && nodeGrid[gridPosition + moveDown].bIsExplored == false && gridPosition + moveDown < gridSize) moveValue += 2;
 
-	if (nodeGrid[gridPosition + MoveLeft].bIsWall == false && nodeGrid[gridPosition + MoveLeft].bIsExplored == false && gridPosition % mazeSizeX != 0 && gridPosition + MoveLeft > 0) moveValue += 4;
+	if (nodeGrid[gridPosition + moveLeft].bIsWall == false && nodeGrid[gridPosition + moveLeft].bIsExplored == false && gridPosition % mazeSizeX != 0 && gridPosition + moveLeft > 0) moveValue += 4;
 
-	if (nodeGrid[gridPosition + MoveRight].bIsWall == false && nodeGrid[gridPosition + MoveRight].bIsExplored == false && (gridPosition + 1) % mazeSizeX != 0 && gridPosition + MoveRight < gridSize) moveValue += 8;
+	if (nodeGrid[gridPosition + moveRight].bIsWall == false && nodeGrid[gridPosition + moveRight].bIsExplored == false && (gridPosition + 1) % mazeSizeX != 0 && gridPosition + moveRight < gridSize) moveValue += 8;
 
 	Evaluate();
 }
@@ -61,16 +50,16 @@ void Mouse::Evaluate()
 		std::cout << "Backing up";
 		break;
 	case 1: // move up
-		gridPosition += MoveUp;
+		gridPosition += moveUp;
 		break;
 	case 2: // move down
-		gridPosition += MoveDown;
+		gridPosition += moveDown;
 		break;
 	case 4: // move left
-		gridPosition += MoveLeft;
+		gridPosition += moveLeft;
 		break;
 	case 8: // move right
-		gridPosition += MoveRight;
+		gridPosition += moveRight;
 		break;
 	default: // mouse can move in more than one direction
 		break;
@@ -81,24 +70,24 @@ void Mouse::Evaluate()
 	switch (moveValue)
 	{
 	case 3: // move up and down
-		gridPosition += PickRandomDirection(MoveUp, MoveDown, 0);
+		gridPosition += PickRandomDirection(moveUp, moveDown, 0);
 		break;
 	case 5: // move up and left
-		gridPosition += PickRandomDirection(MoveUp, MoveLeft, 0);
+		gridPosition += PickRandomDirection(moveUp, moveLeft, 0);
 		break;
 	case 9: // move up and right
-		gridPosition += PickRandomDirection(MoveUp, MoveRight, 0);
+		gridPosition += PickRandomDirection(moveUp, moveRight, 0);
 		break;
 
 	case 6: // move down and left
-		gridPosition += PickRandomDirection(MoveDown, MoveLeft, 0);
+		gridPosition += PickRandomDirection(moveDown, moveLeft, 0);
 		break;
 	case 10: // move down and right
-		gridPosition += PickRandomDirection(MoveDown, MoveRight, 0);
+		gridPosition += PickRandomDirection(moveDown, moveRight, 0);
 		break;
 
 	case 12: // move left and right
-		gridPosition += PickRandomDirection(MoveLeft, MoveRight, 0);
+		gridPosition += PickRandomDirection(moveLeft, moveRight, 0);
 		break;
 
 	default: // mouse can move in more than two directions
@@ -110,19 +99,19 @@ void Mouse::Evaluate()
 	switch (moveValue)
 	{
 	case 7: // move up, down and left
-		gridPosition += PickRandomDirection(MoveUp, MoveDown, MoveLeft);
+		gridPosition += PickRandomDirection(moveUp, moveDown, moveLeft);
 		break;
 
 	case 11: // move up, down and right
-		gridPosition += PickRandomDirection(MoveUp, MoveDown, MoveRight);
+		gridPosition += PickRandomDirection(moveUp, moveDown, moveRight);
 		break;
 
 	case 13: // move up, left and right
-		gridPosition += PickRandomDirection(MoveUp, MoveLeft, MoveRight);
+		gridPosition += PickRandomDirection(moveUp, moveLeft, moveRight);
 		break;
 
 	case 14: // move down, left and right
-		gridPosition += PickRandomDirection(MoveDown, MoveLeft, MoveRight);
+		gridPosition += PickRandomDirection(moveDown, moveLeft, moveRight);
 		break;
 
 	default:
