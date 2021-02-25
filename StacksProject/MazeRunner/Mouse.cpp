@@ -141,15 +141,15 @@ int Mouse::PickRandomDirection(int const a, int const b, int const c = 0) // for
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(1, (2 + c != 0)); // Makes the max 2 or 3 based on the number of parameters passed. If c = 0, then Max = 2 + 0. Otherwise, Max = 2 + 1.
+	std::uniform_int_distribution<> dis(0, (2 + c != 0)); // Makes the max 2 or 3 based on the number of parameters passed. If c = 0, then Max = 2 + 0. Otherwise, Max = 2 + 1.
 
 	switch (dis(gen))
 	{
-	case 1:
+	case 0:
 		return a;
-	case 2:
+	case 1:
 		return b;
-	case 3:
+	case 2:
 		return c;
 	default:
 		break;
