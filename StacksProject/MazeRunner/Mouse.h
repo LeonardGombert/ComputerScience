@@ -5,7 +5,7 @@
 class Mouse
 {
 public:
-	Mouse();
+	Mouse(const int sizeX, const int sizeY, const int startPosition);
 	~Mouse();
 
 	void CheckMoves(Node* grid);
@@ -22,5 +22,6 @@ private:
 	int gridPosition, gridSize;
 	int moveValue;
 
+	int mazeSizeX, mazeSizeY;
 	int moveUp = -mazeSizeX, moveDown = mazeSizeX, moveLeft = -1, moveRight = 1;
 };

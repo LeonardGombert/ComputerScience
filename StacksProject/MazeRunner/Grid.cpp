@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 #include <stdexcept>
-#include "Definitions.h"
 #include "Grid.h"
 #include "Node.h"
 
@@ -17,7 +16,7 @@ Grid::Grid(std::string file)
 
 Grid::~Grid()
 {
-	delete[]grid;
+	delete[]_grid;
 }
 
 
@@ -50,52 +49,46 @@ std::vector<int> Grid::ReadCSV(std::string file)
 				if (ss.peek() == ',') ss.ignore();
 			}
 
-			sizeY++; // increment the number of lines
+			_sizeY++; // increment the number of lines
 		}
 		mazeFile.close();
 	}
 
 	std::vector<int>::size_type sz = convertedMaze.size();
 
-	sizeY--; // - 1 because the last line also contains a line break
-	sizeX = sz / sizeY; // get the number of items per line
+	_sizeY--; // - 1 because the last line also contains a line break
+	_sizeX = sz / _sizeY; // get the number of items per line
 
 	return convertedMaze;
 }
 
 void Grid::GenerateGrid(std::vector<int> convertedMaze)
 {
-	grid = new Node[sizeX * sizeY]; // create grid of Nodes
+	_grid = new Node[_sizeX * _sizeY]; // create grid of Nodes
 
-	std::cout << "The grid array is of size " << sizeX*sizeY << endl;
+	std::cout << "The grid array is of size " << _sizeX*_sizeY << endl;
 	std::cout << "The vector is of size " << convertedMaze.size() << endl;
 
-	for (unsigned int i = 0; i < sizeX*sizeY; i++)
+	for (unsigned int i = 0; i < _sizeX*_sizeY; i++)
 	{
-		grid[i].bIsWall = (convertedMaze[i] == 1) ? true : false;
-		if (convertedMaze[i] == 2) start = i;
-		if (convertedMaze[i] == 3) end = i;
+		_grid[i].bIsWall = (convertedMaze[i] == 1) ? true : false;
+		if (convertedMaze[i] == 2) _start = i;
+		if (convertedMaze[i] == 3) _end = i;
 	}
 
-	grid[end].bIsEnd = true;
+	_grid[_end].bIsEnd = true;
 }
 
 void Grid::DisplayGrid(int mousePosition)
 {
-	for (int i = 0; i < mazeSizeX * mazeSizeY; i++)
+	for (int i = 0; i < _sizeX * _sizeY; i++)
 	{
-		if (i % mazeSizeX == 0) cout << endl;
+		if (i % _sizeX == 0) cout << endl;
 
-		if (grid[i].bIsWall) cout << "# ";
+		if (_grid[i].bIsWall) cout << "# ";
 		else if (i == mousePosition) cout << "M ";
-		else if (grid[i].bIsExplored) cout << ". ";
-		else if (grid[i].bIsEnd) cout << "E ";
+		else if (_grid[i].bIsExplored) cout << ". ";
+		else if (_grid[i].bIsEnd) cout << "E ";
 		else cout << ": ";
 	}
-}
-
-// return the contents of the grid pointer
-Node* Grid::RetrieveGrid()
-{
-	return grid;
 }

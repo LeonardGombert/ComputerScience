@@ -1,12 +1,23 @@
 #include <iostream>
 #include <random>
-#include "Definitions.h"
 #include "Mouse.h"
 
-Mouse::Mouse()
+Mouse::Mouse(const int sizeX, const int sizeY, const int startPosition)
 {
+	mazeSizeX = sizeX;
+	mazeSizeY = sizeY;
+
+	// set the movement values
+	moveUp = -mazeSizeX;
+	moveDown = mazeSizeX;
+	moveLeft = -1;
+	moveRight = 1;
+
+	// set the grid values
 	gridSize = mazeSizeX * mazeSizeY;
-	gridPosition = mazeStart;
+	gridPosition = startPosition;
+
+	// register the starting position
 	movementStack.Push(gridPosition);
 }
 

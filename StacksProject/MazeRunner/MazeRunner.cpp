@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Definitions.h"
 #include "Stack.h"
 #include "Grid.h"
 #include "Mouse.h"
@@ -8,11 +7,10 @@ using namespace std;
 
 int main()
 {
-	Stack stack;
 	Grid grid = Grid("Maze.csv");
-	Mouse mouse;
+	Mouse mouse = Mouse(grid.sizeX(), grid.sizeY(), grid.start());
 
-	while (mouse.RetrievePosition() != mazeEnd)
+	while (mouse.RetrievePosition() != grid.end())
 	{
 		// check the top of the stack to get mouse position
 		grid.DisplayGrid(mouse.RetrievePosition());
@@ -23,7 +21,7 @@ int main()
 		system("PAUSE");
 		system("CLS");
 
-		mouse.CheckMoves(grid.RetrieveGrid());
+		mouse.CheckMoves(grid.nodeGrid());
 	}
 
 	cout << "Mouse found the exit !";

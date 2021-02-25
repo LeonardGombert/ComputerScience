@@ -10,14 +10,18 @@ public:
 
 	void DisplayGrid(int mousePosition);
 
-	Node* RetrieveGrid();
+	Node* nodeGrid() { return _grid; }
+	const int& sizeY() { return _sizeY; }
+	const int& sizeX() { return _sizeX; }
+	const int& start() { return _start; }
+	const int& end() { return _end; }
 
 private:
 	std::vector<int> ReadCSV(std::string file);
 	void GenerateGrid(std::vector<int> convertedMaze);
 
-	int sizeY, sizeX;
-	int start, end;
+	int _sizeY, _sizeX;
+	int _start, _end;
 
-	Node *grid; // a pointer to a Node
+	Node* _grid; // a pointer to a Node
 };
