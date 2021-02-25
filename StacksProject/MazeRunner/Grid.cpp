@@ -6,10 +6,34 @@
 using namespace std;
 
 // create the maze and define contents
-Grid::Grid()
+Grid::Grid(std::string file)
 {
+	fileName = file;
+	ReadCSV();
+}
+
+Grid::~Grid()
+{
+	delete[]grid;
+}
+
+void Grid::ReadCSV()
+{
+
+
+
+	GenerateGrid();
+}
+
+void Grid::GenerateGrid()
+{
+
+
+
+
+
 	grid = new Node[mazeSizeX * mazeSizeY]; // create grid of Nodes
-	
+
 	grid[mazeEnd].bIsEnd = true;
 
 	// 10 x 10 grid maze
@@ -22,12 +46,7 @@ Grid::Grid()
 
 	//6 x 5 grid maze
 	grid[1].bIsWall = grid[3].bIsWall = grid[5].bIsWall = grid[7].bIsWall = grid[15].bIsWall = grid[16].bIsWall =
-	grid[18].bIsWall = grid[19].bIsWall = grid[20].bIsWall = grid[21].bIsWall = grid[29].bIsWall = true;
-}
-
-Grid::~Grid()
-{
-	delete[]grid;
+		grid[18].bIsWall = grid[19].bIsWall = grid[20].bIsWall = grid[21].bIsWall = grid[29].bIsWall = true;
 }
 
 void Grid::DisplayGrid(int mousePosition)
@@ -45,7 +64,7 @@ void Grid::DisplayGrid(int mousePosition)
 }
 
 // return the contents of the grid pointer
-Node* Grid::RetrieveGrid() 
-{ 
-	return grid; 
+Node* Grid::RetrieveGrid()
+{
+	return grid;
 }

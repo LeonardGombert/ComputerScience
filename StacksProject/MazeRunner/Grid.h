@@ -4,13 +4,18 @@
 class Grid
 {
 public:
-	Grid();
+	Grid(std::string file);
 	~Grid();
 
 	void DisplayGrid(int mousePosition);
-	
+
 	Node* RetrieveGrid();
 
 private:
+	void ReadCSV();
+	void GenerateGrid();
+	
+	std::string fileName;
+
 	Node *grid; // a pointer to a Node
 };

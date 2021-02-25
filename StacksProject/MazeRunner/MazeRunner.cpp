@@ -6,10 +6,10 @@
 
 using namespace std;
 
-
-
 int main()
 {
+
+
 	Stack stack;
 	Grid grid;
 	Mouse mouse;
