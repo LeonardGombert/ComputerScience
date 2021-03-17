@@ -6,13 +6,15 @@ public:
 	~Stack();
 
 	void Push(int x);
-	int Pop();
+	void Pop();
 	int Peek();
+
+	const int& size() { return tailPointer; }
 	
 private:
 	void Resize();
 
 	int* stack;
-	int currentSize;
-	int tailPointer;
+	int currentSize; // the dimension of the Stack
+	int tailPointer; // how many items are currently in the Stack
 };

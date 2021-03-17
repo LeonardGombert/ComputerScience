@@ -2,19 +2,18 @@
 #include "Stack.h"
 #include "Grid.h"
 #include "Mouse.h"
-#include "MazeRunner.h"
 
 using namespace std;
 
 int main()
 {
-	Stack stack;
-	Grid grid;
-	Mouse mouse = Mouse(0, grid.gridSize); 
+	Grid grid = Grid("Maze.csv");
+	Mouse mouse = Mouse(grid.sizeX(), grid.sizeY(), grid.start());
 
-	while (true)
+	while (mouse.RetrievePosition() != grid.end())
 	{
-		grid.DisplayGrid();
+		// check the top of the stack to get mouse position
+		grid.DisplayGrid(mouse.RetrievePosition());
 
 		cout << endl;
 		cout << endl;
@@ -22,13 +21,11 @@ int main()
 		system("PAUSE");
 		system("CLS");
 
-		mouse.Step(grid.RetrieveGrid()); // a reference to the original pointer
+		mouse.CheckMoves(grid.nodeGrid());
 	}
 
-	/*stack.Push(4);
-	stack.Push(92);
-	stack.Push(7);
-	int yes = stack.Pop();
-	cout << yes << endl;
-	cout << stack.Peek() << endl;*/
+	system("CLS");
+
+	cout << "Mouse found the exit !" << endl;
+	
 }

@@ -1,53 +1,94 @@
 #include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <stdexcept>
 #include "Grid.h"
 #include "Node.h"
 
 using namespace std;
 
-#define sizeX 6 
-#define sizeY 5
-
-Grid::Grid()
+// create the maze and define contents
+Grid::Grid(std::string file)
 {
-	grid = new Node[sizeX * sizeY];
-	gridSize = sizeX * sizeY;
-	GenerateGrid();
+	GenerateGrid(ReadCSV(file));
 }
 
 Grid::~Grid()
 {
+	delete[]_grid;
 }
 
-void Grid::DisplayGrid()
+
+std::vector<int> Grid::ReadCSV(std::string file)
 {
-	for (size_t i = 0; i < sizeX * sizeY; i++)
+	std::vector<int> convertedMaze;
+	std::ifstream mazeFile(file);
+
+	std::string line;
+	int val;
+
+	if (!mazeFile.is_open()) std::cout << "Couldn't open the file";//throw std::runtime_error("Couldn't open the file");
+
+	else
 	{
-		if (i % sizeX == 0) cout << endl;
-		
-		if (grid[i].bWall) cout << "x ";
-		else if (grid[i].mouse) cout << "O ";
-		else if (grid[i].explored) cout << "o ";
-		else cout << ". ";
-	}
-}
-
-Node* Grid::RetrieveGrid()
-{
-	return grid; // return the contents of the pointer
-}
-
-void Grid::GenerateGrid()
-{
-	grid[0].mouse = true;
-
-	grid[1].bWall = grid[3].bWall = grid[5].bWall = grid[7].bWall = grid[15].bWall = grid[16].bWall
-	= grid[18].bWall = grid[19].bWall = grid[20].bWall = grid[21].bWall = grid[29].bWall = true;
-
-	for (size_t i = 0; i < sizeY; i++)
-	{
-		for (size_t j = 0; j < sizeX; j++)
+		while (std::getline(mazeFile, line))
 		{
-			grid[i*sizeX +j].index = i;
+			// Create a stringstream of the current line
+			std::stringstream ss(line);
+
+			// Keep track of the current column index
+
+			// Extract each integer
+			while (ss >> val) {
+
+				// Add the current integer to the 'colIdx' column's values vector
+				convertedMaze.push_back(val);
+
+				// If the next token is a comma, ignore it and move on
+				if (ss.peek() == ',') ss.ignore();
+			}
+
+			_sizeY++; // increment the number of lines
 		}
+		mazeFile.close();
+	}
+
+	std::vector<int>::size_type sz = convertedMaze.size();
+
+	_sizeY--; // - 1 because the last line also contains a line break
+	_sizeX = sz / _sizeY; // get the number of items per line
+
+	return convertedMaze;
+}
+
+void Grid::GenerateGrid(std::vector<int> convertedMaze)
+{
+	_grid = new Node[_sizeX * _sizeY]; // create grid of Nodes
+
+	std::cout << "The grid array is of size " << _sizeX*_sizeY << endl;
+	std::cout << "The vector is of size " << convertedMaze.size() << endl;
+
+	for (unsigned int i = 0; i < _sizeX*_sizeY; i++)
+	{
+		_grid[i].bIsWall = (convertedMaze[i] == 1) ? true : false;
+		if (convertedMaze[i] == 2) _start = i;
+		if (convertedMaze[i] == 3) _end = i;
+	}
+
+	_grid[_end].bIsEnd = true;
+}
+
+void Grid::DisplayGrid(int mousePosition)
+{
+	for (int i = 0; i < _sizeX * _sizeY; i++)
+	{
+		if (i % _sizeX == 0) cout << endl;
+
+		if (_grid[i].bIsWall) cout << "# ";
+		else if (i == mousePosition) cout << "M ";
+		else if (_grid[i].bIsExplored) cout << ". ";
+		else if (_grid[i].bIsEnd) cout << "E ";
+		else cout << ": ";
 	}
 }
