@@ -1,22 +1,32 @@
 #include <iostream>
+#include <string>
+#include <deque>
+#include <queue>
+#include <stack>
 #include "Stack.h"
 #include "Queue.h"
 
 int main()
 {
-	Queue<int> queue;
-	queue.enqueue(new int(4));
-	queue.enqueue(new int(5));
-	queue.enqueue(new int(6));
-	queue.enqueue(new int(7));
-	queue.enqueue(new int(8));
-	queue.enqueue(new int(9));
-	queue.enqueue(new int(10));
+	/*
+	std::deque<const char*> students = { "Tom", "Minnie", "Doo-rag", "Ass-Bone", "Critical Hit", "Cement Mixer" };
+	std::queue<const char*, std::deque<const char*>> queue(students);
 
+	std::deque<int> trays;
+	std::stack<int, std::deque<int>> stack(trays);
+
+	queue.pop();
+	stack.push(1);
+	queue.pop();
+	stack.push(1);
+	printf("The first student in line is %s. The stack of trays is %d high.\n", queue.front(), stack.size());
+	*/
+
+	Queue<int> queue;
+	Queue<int> queue;
 	queue.dequeue();
 	queue.dequeue();
-	queue.dequeue();
-	printf("The oldest-item of the queue after three dequeues is %d.\n", queue.peek());
+	std::cout << queue.peek();
 
 	return 0;
 }
