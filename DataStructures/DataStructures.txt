@@ -1,5 +1,5 @@
-Linked List
-- The problem : group pieces of data by creating a linear list, with each 
+LINKED LIST
+-------------------
 element referencing the next and previous data's memory location.
 
 - Node struct containing the data of type T, previous and next pointers, index of the Node
@@ -12,11 +12,41 @@ element referencing the next and previous data's memory location.
 	Next/Previous Node struct pointer (unique pointer?)
 	const int Index
 
-LinkedList class that contains : 
-	- int listSize
- 	- add(&&) -> creates new Node and moves the value that was passed as a parameter
-	- remove(i) -> removes node at index of i
-	- operator const [] (i) -> will check to see if starting at beginning or end, and go previous x i or next x i
-	- count() -> returns the listSize
-	- T last() -> returns the value of last node
-	- T first() -> returns the value of first node
+- LinkedList class that contains : 
+	int listSize
+ 	add(&&) -> creates new Node and moves the value that was passed as a parameter
+	remove(i) -> removes node at index of i
+	operator const [] (i) -> will check to see if starting at beginning or end, and go previous x i or next x i
+	count() -> returns the listSize
+	T last() -> returns the value of last node
+	T first() -> returns the value of first node
+
+
+QUEUE & STACK
+-------------------
+FIFO queue where the first elements that are put in are the first elements to come outl
+LIFO stack where the last elements that are put in are the first elements to come out
+
+- dynamic array template<D> struct
+	int startSize
+	int currSize
+	D* array // define size in constructor
+	[] operator overload -> return an element of the array
+	resizearray() -> called by the add
+	add() -> check size and resize
+	remove() -> 
+
+- circular template<C> struct
+	int arraySize
+	C* array // define size in constructor
+	C* startPointer
+	C* endPointer
+		
+- Queue template<T> class = dynamic array implementation
+	
+	
+- Stack template<T> class = circular array implementation
+	
+
+SORTING ALGORITHMS
+-------------------

@@ -6,6 +6,7 @@ SequenceDirector* SequenceDirector::instance = NULL;
 
 int main()
 {
+	/*
 	SequenceDirector::LazyInititalizeSingleton(1);
 
 	while (true)
@@ -37,6 +38,7 @@ int main()
 			std::cout << "Made it to the beginning" << std::endl;
 		}
 	}
+	*/
 
 	return 0;
 }

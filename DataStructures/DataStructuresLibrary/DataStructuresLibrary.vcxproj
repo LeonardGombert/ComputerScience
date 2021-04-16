@@ -142,7 +142,10 @@
     <ClCompile Include="DataStructuresLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircularArray.h" />
+    <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
