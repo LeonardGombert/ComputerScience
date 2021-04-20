@@ -9,42 +9,27 @@ using namespace LL;
 
 int main()
 {
-	std::string str = "Hello";
-	std::vector<std::string> v;
+	std::vector<std::string> v1 = { "one", "two", "three", "four", "five" };
+	std::vector<std::string> v2 = { "six", "seven", "eight", "nine", "ten" };
 
-	// uses the push_back(const T&) overload, which means 
-	// we'll incur the cost of copying str
-	v.push_back(str);
-	std::cout << "After copy, str is " << std::quoted(str) << '\n';
+	auto v3 = std::move(v2);
 
-	// uses the rvalue reference push_back(T&&) overload, 
-	// which means no strings will be copied; instead, the contents
-	// of str will be moved into the vector.  This is less
-	// expensive, but also means str might now be empty.
-	v.push_back(std::move(str));
-	std::cout << "After move, str is " << std::quoted(str) << '\n';
+	std::cout << v2.size() << std::endl;
+	std::cout << v3.size() << std::endl;
 
-	std::cout << "The contents of the vector are " << quoted(v[0])
-		<< ", " << quoted(v[1]) << '\n';
-	std::cout << "There is " << v[0] << " at " << &(v[0]) << " in container #1." << std::endl;
-	std::cout << "There is " << str << " at " << &str << std::endl;
+	int x[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int y[10] = { };
 
+	y = std::move(x);
 
+	std::cout << x << std::endl;
+	std::cout << y << std::endl;
 
+	double val = 12;
+	std::cout << val << std::endl;
 
-
-	std::vector<int> v1 = { 1, 2, 3, 4, 5 };
-	std::vector<int> v2 = { };
-
-	std::cout << "There is " << v1[0] << " at " << &(v1[0]) << " in container #1." << std::endl;
-
-	v2.push_back(std::move(v1[0])); // v1 is now empty, and v2 has contents of v1
-	std::cout << "There is " << v1[0] << " at " << &(v1[0]) << " in container #1." << std::endl;
-	std::cout << "There is " << v2[0] << " at " << &(v2[0]) << " in container #2." << std::endl;
-
-	/*
 #pragma region Linked List
-	LinkedList<int> linkedList;
+	/*LinkedList<int> linkedList;
 	linkedList.add(12);
 	linkedList.add(57);
 	linkedList.add(21);
@@ -55,12 +40,12 @@ int main()
 	std::cout << "Elements in List : " << linkedList.getCount() << std::endl;
 
 	const int requestedValue = 1;
-	std::cout << "You requested the value at position " << requestedValue << " : " << linkedList[requestedValue]->value << std::endl;
+	std::cout << "You requested the value at position " << requestedValue << " : " << linkedList[requestedValue]->value << std::endl;*/
 #pragma endregion
 
 #pragma region DynamicArray
 	/*DynamicArray<int> dynamic;
 	dynamic.add(2);*/
 #pragma endregion
-
+	return 0;
 }
