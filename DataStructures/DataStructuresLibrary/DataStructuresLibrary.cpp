@@ -9,25 +9,6 @@ using namespace LL;
 
 int main()
 {
-	std::vector<std::string> v1 = { "one", "two", "three", "four", "five" };
-	std::vector<std::string> v2 = { "six", "seven", "eight", "nine", "ten" };
-
-	auto v3 = std::move(v2);
-
-	std::cout << v2.size() << std::endl;
-	std::cout << v3.size() << std::endl;
-
-	int x[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	int y[10] = { };
-
-	y = std::move(x);
-
-	std::cout << x << std::endl;
-	std::cout << y << std::endl;
-
-	double val = 12;
-	std::cout << val << std::endl;
-
 #pragma region Linked List
 	/*LinkedList<int> linkedList;
 	linkedList.add(12);
@@ -47,5 +28,6 @@ int main()
 	/*DynamicArray<int> dynamic;
 	dynamic.add(2);*/
 #pragma endregion
+
 	return 0;
 }
