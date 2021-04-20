@@ -1,0 +1,18 @@
+CONFERENCE 01
+-------------------------------------------
+*What to showcase*
+
+1. Template classes
+	.Template Functionality
+	.How they actually work
+2. Move Semantics
+	.Constructors Implementation
+	.Operator overloading
+
+*Process*
+
+Linked List Implementation
+	.Linked List use generic type (Templates)
+	.Resize dynamic array with (Move Constructor)
+	.Inserted elements use Move Semantics (Copy Operator)
+_______________________________________________________________________________
